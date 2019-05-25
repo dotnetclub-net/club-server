@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+  generation: 1
+  name: web-ingress
+spec:
+  rules:
+  - host: dotnetclub.net
+    http:
+      paths:
+      - backend:
+          serviceName: web-svc
+          servicePort: 80
+        path: /
+
+# todo: add HTTPS support

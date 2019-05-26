@@ -1,15 +1,15 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: web-svc
+  name: web-adm-svc
   labels:
-    name: web-svc
+    name: web-adm-svc
 spec:
   type: NodePort
   selector:
-    app: web
+    app: web-adm
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 5000
-      nodePort: 30981
+      targetPort: 5050
+      nodePort: 31430

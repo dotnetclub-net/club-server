@@ -7,7 +7,14 @@ metadata:
   name: web-ingress
 spec:
   rules:
-  - host: dotnetclub.net
+  - host: preview.dotnetclub.net
+    http:
+      paths:
+      - backend:
+          serviceName: web-svc
+          servicePort: 80
+        path: /
+  - host: beta.dotnetclub.net
     http:
       paths:
       - backend:

@@ -27,6 +27,14 @@ spec:
       securityContext:
             runAsUser: 5000
             fsGroup: 5000
+      initContainers:
+        - name: dbmigrator
+          image: jijiechen/dotnetclub:201905061321
+          command: [ "dotnet"]
+          args: ["/club-app/Discussion.Migrations.dll", "Data Source=/club-data/dotnetclub.db"]
+          volumeMounts:
+            - mountPath: /club-data
+              name: web-data
       containers:
         - name: dotnetclub
           image: jijiechen/dotnetclub:201905061321

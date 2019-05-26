@@ -1,0 +1,32 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: daily-rs
+  labels:
+    name: daily-rs
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: daily
+  template:
+    metadata:
+      labels:
+        app: daily
+    spec:
+      volumes:
+        - name: web-data
+          persistentVolumeClaim: 
+            claimName: web-claim
+      securityContext:
+            runAsUser: 5000
+            fsGroup: 5000
+      containers:
+        - name: daily
+          image: centos:7
+          command: [ "/bin/bash", "-c", "--" ]
+          args: [ "while true; do sleep 30; done;" ]
+          volumeMounts:
+            - mountPath: /club-data
+              name: web-data
+          

@@ -6,6 +6,19 @@ data:
   appsettings.json: |-
     {
         "sqliteConnectionString": "Data Source=/club-data/dotnetclub.db",
+        "EmailDeliveryOptions": {
+          "LoginName": "apikey",
+          "Password": "{{ SENDGRID_KEY }}",
+          "MailFrom": "system@dotnetclub.net",
+          "ServerHost": "smtp.sendgrid.net",
+          "ServerSslPort": "465"
+        },
+        "AliyunSmsOptions": {
+          "AccountKeyId": "{{ ALIYUN_KEY_ID }}",
+          "AccessKeySecret": "{{ ALIYUN_KEY_SECRET }}",
+          "SmsServiceSignName": "{{ ALIYUN_SMS_SIGN_CODE }}",
+          "SmsServiceTemplateCode": "{{ ALIYUN_SMS_TEMPLATE_CODE }}"
+        },
         "Logging": {
           "File": {
             "PathFormat": "logs/log-{Date}.log",

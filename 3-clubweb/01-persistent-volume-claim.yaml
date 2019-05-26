@@ -8,6 +8,7 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
+  storageClassName: alicloud-nas
   resources:
     requests:
       storage: 10Gi

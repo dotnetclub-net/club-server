@@ -6,6 +6,10 @@ metadata:
   generation: 1
   name: web-ingress
 spec:
+  tls:
+    - hosts:
+      - preview.dotnetclub.net
+      secretName: web-certificate-preview
   rules:
   - host: preview.dotnetclub.net
     http:
@@ -14,12 +18,3 @@ spec:
           serviceName: web-svc
           servicePort: 80
         path: /
-  - host: beta.dotnetclub.net
-    http:
-      paths:
-      - backend:
-          serviceName: web-svc
-          servicePort: 80
-        path: /
-
-# todo: add HTTPS support

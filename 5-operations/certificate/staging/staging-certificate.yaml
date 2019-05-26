@@ -1,0 +1,17 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: web-certificate-staging
+spec:
+  secretName: web-certificate-staging
+  dnsNames:
+    - beta.dotnetclub.net
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+        - beta.dotnetclub.net
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer

@@ -1,0 +1,17 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: web-certificate-club
+spec:
+  secretName: web-certificate-club
+  dnsNames:
+    - dotnetclub.net
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+        - dotnetclub.net
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

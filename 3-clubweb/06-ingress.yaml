@@ -10,8 +10,18 @@ spec:
     - hosts:
       - preview.dotnetclub.net
       secretName: web-certificate-preview
+    - hosts:
+      - dotnetclub.net
+      secretName: web-certificate-club
   rules:
   - host: preview.dotnetclub.net
+    http:
+      paths:
+      - backend:
+          serviceName: web-svc
+          servicePort: 80
+        path: /
+  - host: dotnetclub.net
     http:
       paths:
       - backend:

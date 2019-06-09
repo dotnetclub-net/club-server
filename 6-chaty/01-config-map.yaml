@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chaty-config
+data:
+  config.json: |-
+    {
+        "wechaty-puppet-name": "{{ CHATY_PUPPET_NAME }}",
+        "wechaty-puppet-options": {
+          "token": "{{ CHATY_PUPPET_TOKEN }}"
+        }
+    }
+
+  users.json: |-
+    {
+        "{{ CHATY_API_USERNAME }}" : "{{ CHATY_API_PASSWORD }}"
+    }

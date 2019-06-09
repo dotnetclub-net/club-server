@@ -1,0 +1,33 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: chaty-rs
+  labels:
+    name: chaty-rs
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: chaty
+  template:
+    metadata:
+      labels:
+        app: chaty
+    spec:
+      volumes:
+        - name: chaty-config-data
+          configMap: 
+            name: chaty-config
+      containers:
+        - name: clubchaty
+          image: jijiechen/dotnetclub-chaty:201906091445
+          ports:
+            - name: http
+              containerPort: 3000
+          volumeMounts:
+            - mountPath: /dotnet-chaty/config/config.production.json
+              name: chaty-config-data
+              subPath: config.json
+            - mountPath: /dotnet-chaty/config/users.json
+              name: chaty-config-data
+              subPath: users.json

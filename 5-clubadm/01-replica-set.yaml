@@ -22,7 +22,7 @@ spec:
             runAsUser: 5000
             fsGroup: 5000
       containers:
-        - name: dotnetclub
+        - name: clubadmin
           image: jijiechen/dotnetclub-adm:201905061321
           ports:
             - name: http

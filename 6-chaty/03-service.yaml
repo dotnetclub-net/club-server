@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: chaty-svc
+  labels:
+    name: chaty-svc
+spec:
+  type: NodePort
+  selector:
+    app: chaty
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 31433

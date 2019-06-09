@@ -19,6 +19,11 @@ data:
           "SmsServiceSignName": "{{ ALIYUN_SMS_SIGN_CODE }}",
           "SmsServiceTemplateCode": "{{ ALIYUN_SMS_TEMPLATE_CODE }}"
         },
+        "ChatyOptions": {
+          "ServiceBaseUrl": "{{ CHATY_API_BASE_URL }}",
+          "ApiToken": "{{ CHATY_API_TOKEN }}",
+          "AllowedUsers": "{{ CHATY_CLUB_USERS }}"
+        },
         "Logging": {
           "File": {
             "PathFormat": "logs/log-{Date}.log",

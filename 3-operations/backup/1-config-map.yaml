@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-backup-script-config
+data:
+  blobcontainerurl: |-
+    {{ BACKUP_AZURE_CONTAINER_URL }}
+  blobkey: |-
+    {{ BACKUP_AZURE_BLOB_KEY }}
+  backup.sh: |-
+    #!/bin/bash
+
+    BLOB_CONTAINER_URL=`cat /backup-assets/blobcontainerurl`
+    BLOB_KEY=`cat /backup-assets/blobkey`
+
+    cd /
+    datetime=`date +%Y%m%d%H%M`
+    mkdir -p /backup/$datetime/
+
+    echo "准备中：正在复制到备份文件夹"
+    cp -R /club-data/ /backup/$datetime/
+
+    echo "打包中..."
+    tar -zcf /backup/$datetime.tar.gz /backup/$datetime
+
+    echo '上传中...'
+    azcopy --source  /backup/$datetime.tar.gz --destination $BLOB_CONTAINER_URL/dotnetclub/$datetime.tar.gz --dest-key $BLOB_KEY

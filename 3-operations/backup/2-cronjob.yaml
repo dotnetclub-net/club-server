@@ -1,0 +1,31 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: web-backup
+spec:
+  schedule: "0 17 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          volumes:
+            - name: web-data
+              persistentVolumeClaim: 
+                claimName: web-claim
+            - name: backup-script
+              configMap:
+                name: web-backup-script-config
+                defaultMode: 0777
+          containers:
+          - name: backup-runner
+            image: hawaku/azcopy
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+              - mountPath: /backup-assets/
+                name: backup-script
+              - mountPath: /club-data
+                name: web-data
+            args:
+              - /backup-assets/backup.sh
+                

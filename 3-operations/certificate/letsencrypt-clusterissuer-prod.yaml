@@ -5,7 +5,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: {{ CERT_CONTACT_EMAIL }}
+    email: $$CERT_CONTACT_EMAIL
     privateKeySecretRef:
       name: letsencrypt-prod-jijiechen-outlook
     http01: {}

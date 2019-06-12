@@ -142,11 +142,11 @@ spec:
             - name: PROVISIONER_NAME
               value: alicloud/nas
             - name: NFS_SERVER
-              value: {{ NAS_SERVER }}
+              value: $$NAS_SERVER
             - name: NFS_PATH
               value: /
       volumes:
         - name: nfs-client-root
           nfs:
-            server: {{ NAS_SERVER }}
+            server: $$NAS_SERVER
             path: /

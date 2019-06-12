@@ -5,13 +5,13 @@ metadata:
 data:
   config.json: |-
     {
-        "wechaty-puppet-name": "{{ CHATY_PUPPET_NAME }}",
+        "wechaty-puppet-name": "$$CHATY_PUPPET_NAME",
         "wechaty-puppet-options": {
-          "token": "{{ CHATY_PUPPET_TOKEN }}"
+          "token": "$$CHATY_PUPPET_TOKEN"
         }
     }
 
   users.json: |-
     {
-        "{{ CHATY_API_USERNAME }}" : "{{ CHATY_API_PASSWORD }}"
+        "$$CHATY_API_USERNAME" : "$$CHATY_API_PASSWORD"
     }

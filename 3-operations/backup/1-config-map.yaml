@@ -4,9 +4,9 @@ metadata:
   name: web-backup-script-config
 data:
   blobcontainerurl: |-
-    {{ BACKUP_AZURE_CONTAINER_URL }}
+    $$BACKUP_AZURE_CONTAINER_URL
   blobkey: |-
-    {{ BACKUP_AZURE_BLOB_KEY }}
+    $$BACKUP_AZURE_BLOB_KEY
   backup.sh: |-
     #!/bin/bash
 

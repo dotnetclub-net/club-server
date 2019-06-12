@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ./values.sh
-# $$xxxx  => SECURE_xxxx
+# SECURE_xxxx  =>  $$xxxx
 
 dump_vars() {
     compgen -v | while read -r VARNAME; do
@@ -25,7 +25,7 @@ tmpl() {
     
     for VARNAME in $VARS; do
         EXP="\\\$\\\$${VARNAME:7}"
-        CONTENT=`echo "$CONTENT" | sed "s/$EXP/${!VARNAME}/g"`
+        CONTENT=`echo "$CONTENT" | sed "s~$EXP~${!VARNAME}~g"`
     done
 
     echo "$CONTENT"

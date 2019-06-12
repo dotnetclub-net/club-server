@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# ./values.sh
 # $$xxxx  => SECURE_xxxx
 
 dump_vars() {
@@ -29,6 +30,10 @@ tmpl() {
 
     echo "$CONTENT"
 }
+
+if [ -f ./values.sh ]; then
+    source ./values.sh
+fi
 
 FILE=$1
 if ! [ -z "$FILE" ] ; then

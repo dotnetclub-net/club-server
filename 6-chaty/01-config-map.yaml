@@ -13,5 +13,6 @@ data:
 
   users.json: |-
     {
-        "$$CHATY_API_USERNAME" : "$$CHATY_API_PASSWORD"
+        "$$CHATY_API_USERNAME" : "$$CHATY_API_PASSWORD",
+        "$$CHATY_API_USERNAME2" : "$$CHATY_API_PASSWORD2"
     }

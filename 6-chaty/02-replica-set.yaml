@@ -20,7 +20,7 @@ spec:
             name: chaty-config
       containers:
         - name: clubchaty
-          image: jijiechen/dotnetclub-chaty:201906091445
+          image: jijiechen/dotnetclub-chaty:201906121756
           ports:
             - name: http
               containerPort: 3000

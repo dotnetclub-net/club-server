@@ -36,6 +36,6 @@ spec:
     schedule: '@every 2m'
     scheduler-enabled: false
   storage:
-    
+    storage-class: alicloud-nas
   use-ssl: false
   zones: []

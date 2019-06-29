@@ -23,6 +23,7 @@ spec:
         release: efk
     spec:
       containers:
+      - image: fluent/fluent-bit:1.2
         imagePullPolicy: Always
         name: fluent-bit
         resources: {}

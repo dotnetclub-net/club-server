@@ -1,0 +1,41 @@
+apiVersion: enterprises.upmc.com/v1
+kind: ElasticsearchCluster
+metadata:
+  generation: 1
+  labels:
+    app: elasticsearch
+    chart: elasticsearch-0.1.6
+    heritage: Tiller
+    release: efk
+  name: efk-cluster
+spec:
+  client-java-options: -Xms1024m -Xmx1024m
+  client-node-replicas: 1
+  data-java-options: -Xms2048m -Xmx2048m
+  data-node-replicas: 1
+  data-volume-size: 10Gi
+  elastic-search-image: quay.io/pires/docker-elasticsearch-kubernetes:6.4.2
+  master-java-options: -Xms2048m -Xmx2048m
+  master-node-replicas: 1
+  network-host: 0.0.0.0
+  resources:
+    limits:
+      cpu: "1"
+      memory: 2048Mi
+    requests:
+      cpu: 200m
+      memory: 1024Mi
+  snapshot:
+    bucket-name: efk-snapshots
+    bucketName: elasticsnapshots
+    cron-schedule: 0 2 * * *
+    enabled: false
+    image: komljen/elasticsearch-cron:0.0.6
+    repo-region: us-east-1
+    repo-type: s3
+    schedule: '@every 2m'
+    scheduler-enabled: false
+  storage:
+    
+  use-ssl: false
+  zones: []

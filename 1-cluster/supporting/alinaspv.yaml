@@ -27,6 +27,10 @@ spec:
         securityContext:
           privileged: true
         env:
+        - name: ACCESS_KEY_ID
+          value: $$ALIYUN_KEY_ID
+        - name: ACCESS_KEY_SECRET
+          value: $$ALIYUN_KEY_SECRET
         - name: ACS_DISK
           value: "true"
         - name: ACS_NAS

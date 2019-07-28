@@ -5,7 +5,7 @@ metadata:
 data:
   appsettings.json: |-
     {
-        "sqliteConnectionString": "Data Source=/club-data/dotnetclub.db",
+        "pgsqlConnectionString": "$$CLUB_DB_CONENCTION_STRING",
         "EmailDeliveryOptions": {
           "LoginName": "apikey",
           "Password": "$$SENDGRID_KEY",
@@ -47,5 +47,16 @@ data:
           "DisableAutomaticKeyGeneration" : true,
           "KeyRepositoryPath": "/data-protection-keys/",
           "ApplicationName": "dotnetclub"
+        },
+        "ExternalIdentityServiceOptions": {
+          "IsEnabled": true,
+          "ProviderId": "id.dotnetclub.net",
+          "Authority": "https://id.dotnetclub.net/auth/realms/dotnetclub",
+          "RequireHttpsMetadata": false,
+          "ClientId": "dotnetclub-net",
+          "ClientSecret": "$$EXTERNAL_IDP_CLIENT_SECRET",
+          "RegisterUri": "https://id.dotnetclub.net/auth/realms/dotnetclub/protocol/openid-connect/registrations?client_id=dotnetclub-net&response_type=code&scope=openid%20email%20phone%20profile&redirect_uri=https%3A%2F%2Fdotnetclub.net%2Fsignin%3FreturnUrl%3D%252f&kc_locale=zh",
+          "ChangePasswordUri": "https://id.dotnetclub.net/auth/realms/dotnetclub/account/password",
+          "KeyCloakAdminCredential": "$$EXTERNAL_IDP_ADMIN_CREDENTIAL"
         }
     }

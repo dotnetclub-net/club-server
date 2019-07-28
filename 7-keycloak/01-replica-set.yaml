@@ -1,0 +1,37 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: keycloak-rs
+  labels:
+    name: keycloak-rs
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: dockerhub.akscn.io/jijiechen/dotnetclub-keycloak:6.0.1
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: DB_VENDOR
+              value: postgres
+            - name: JDBC_PARAMS
+              value: 'connectTimeout=30'
+            - name: DB_ADDR
+              value: $$IDENTITY_DATABASE_HOSTNAME
+            - name: DB_PORT
+              value: '5432'
+            - name: DB_DATABASE
+              value: $$IDENTITY_DATABASE_NAME
+            - name: DB_USER
+              value: $$IDENTITY_DATABASE_USERNAME
+            - name: DB_PASSWORD
+              value: $$IDENTITY_DATABASE_PASSWORD

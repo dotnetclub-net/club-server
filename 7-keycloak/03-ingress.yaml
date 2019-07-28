@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+  generation: 1
+  name: keycloak-ingress
+spec:
+  tls:
+    - hosts:
+      - id.dotnetclub.net
+      secretName: web-certificate-club-id
+  rules:
+    - host: id.dotnetclub.net
+      http:
+        paths:
+        - backend:
+            serviceName: keycloak-svc
+            servicePort: 80
+          path: /

@@ -52,7 +52,7 @@ data:
           "IsEnabled": true,
           "ProviderId": "id.dotnetclub.net",
           "Authority": "https://id.dotnetclub.net/auth/realms/dotnetclub",
-          "RequireHttpsMetadata": false,
+          "RequireHttpsMetadata": true,
           "ClientId": "dotnetclub-net",
           "ClientSecret": "$$EXTERNAL_IDP_CLIENT_SECRET",
           "RegisterUri": "https://id.dotnetclub.net/auth/realms/dotnetclub/protocol/openid-connect/registrations?client_id=dotnetclub-net&response_type=code&scope=openid%20email%20phone%20profile&redirect_uri=https%3A%2F%2Fdotnetclub.net%2Fsignin%3FreturnUrl%3D%252f&kc_locale=zh",

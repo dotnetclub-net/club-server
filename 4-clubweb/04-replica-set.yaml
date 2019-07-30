@@ -29,7 +29,7 @@ spec:
             fsGroup: 5000
       initContainers:
         - name: dbmigrator
-          image: dockerhub.akscn.io/jijiechen/dotnetclub:201907281623
+          image: dockerhub.akscn.io/jijiechen/dotnetclub:201907301327
           command: [ "dotnet"]
           args: ["/club-app/Discussion.Migrations.dll", "$$CLUB_DB_CONENCTION_STRING"]
           volumeMounts:
@@ -37,7 +37,7 @@ spec:
               name: web-data
       containers:
         - name: dotnetclub
-          image: dockerhub.akscn.io/jijiechen/dotnetclub:201907281623
+          image: dockerhub.akscn.io/jijiechen/dotnetclub:201907301327
           ports:
             - name: http
               containerPort: 5000

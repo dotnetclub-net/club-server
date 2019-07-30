@@ -35,3 +35,5 @@ spec:
               value: $$IDENTITY_DATABASE_USERNAME
             - name: DB_PASSWORD
               value: $$IDENTITY_DATABASE_PASSWORD
+            - name: PROXY_ADDRESS_FORWARDING
+              value: 'true'

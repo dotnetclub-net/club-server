@@ -4,11 +4,13 @@ metadata:
   name: web-backup
 spec:
   schedule: "0 17 * * *"
+  concurrencyPolicy: Forbid
   jobTemplate:
     spec:
+      backoffLimit: 0
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           volumes:
             - name: web-data
               persistentVolumeClaim: 

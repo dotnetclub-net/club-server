@@ -15,6 +15,8 @@ data:
     $$BACKUP_PG_DUMP_ARGS
   backup.sh: |-
     #!/bin/bash
+    
+    set -e
 
     BLOB_CONTAINER_URL=`cat /backup-assets/blobcontainerurl`
     BLOB_SAS=`cat /backup-assets/blobsas`
@@ -40,4 +42,5 @@ data:
 
     echo '上传中...'
     azcopy copy /backup/$datetime.tar.gz "$BLOB_CONTAINER_URL/dotnetclub/$datetime.tar.gz?$BLOB_SAS"
+
 

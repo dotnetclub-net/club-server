@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: keycloak
-          image: dockerhub.akscn.io/jijiechen/dotnetclub-keycloak:6.0.1
+          image: dockerhub.azk8s.cn/jijiechen/dotnetclub-keycloak:6.0.1
           ports:
             - name: http
               containerPort: 8080

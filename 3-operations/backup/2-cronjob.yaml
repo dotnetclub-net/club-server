@@ -19,7 +19,7 @@ spec:
                 defaultMode: 0777
           containers:
           - name: backup-runner
-            image: hawaku/azcopy
+            image: dockerhub.azk8s.cn/jijiechen/dotnetclub-backup-runner:azcp10pg11
             imagePullPolicy: IfNotPresent
             volumeMounts:
               - mountPath: /backup-assets/

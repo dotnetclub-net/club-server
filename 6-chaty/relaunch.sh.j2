@@ -1,0 +1,37 @@
+#!/bin/bash
+
+SERV_NAME=chaty
+PORT_CONTAINER=3000
+PORT_EXTERNAL=31433
+IMAGE_FULL_NAME='dockerhub.azk8s.cn/jijiechen/dotnetclub-chaty:201906121756'
+
+start_or_exit(){
+  if [ -f "./starting" ]; then
+    starting=$(cat ./starting)
+    now=$(date +%s)
+    span=$((now - starting))
+    if [ $span -lt 600 ]; then
+        exit 0
+    else
+        rm ./starting
+    fi
+  fi
+
+  starting=$(date +%s)
+  echo "$starting" > ./starting
+}
+
+running=$(docker ps | grep $SERV_NAME)
+ if [ -z "$running" ]; then
+  start_or_exit
+
+  echo "re-launching $SERV_NAME at $(date)" >> /chaty/relaunch.log
+  docker rm -f $SERV_NAME 2> /dev/null || true
+
+  docker run -d --name $SERV_NAME \
+  -p $PORT_EXTERNAL:$PORT_CONTAINER \
+  -v /chaty/config:/dotnet-chaty/config/ \
+  $IMAGE_FULL_NAME
+
+  rm ./starting
+ fi

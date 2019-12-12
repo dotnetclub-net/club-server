@@ -1,0 +1,72 @@
+# ansible-playbook ./install-on-vm.yaml -i "server_host," --user jijiechen
+# requires on local: yq https://mikefarah.github.io/yq/
+
+---
+
+- name: Install Docker and run image on target server
+  hosts: all
+  become: yes
+  tasks:
+    - name: prepare for installing Docker
+      command: 'yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo'
+
+    - name: install Docker
+      package: 
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+
+    - name: start docker
+      shell: 'systemctl enable docker && systemctl start docker'
+
+    - name: create config directory
+      file:
+        path: '/chaty/config/'
+        state: directory
+
+    - name: compose chaty app config
+      shell: 
+        cmd: "./tmpl.sh 6-chaty/01-config-map.yaml | yq read - 'data[config.json]'"
+        chdir: '../'
+      register: app_config
+      delegate_to: localhost
+      become: no
+
+    - name: provision app config
+      copy: 
+        content: "{{ app_config.stdout }}"
+        dest: /chaty/config/config.production.json
+
+    - name: compose chaty users config
+      shell: 
+        cmd: "./tmpl.sh 6-chaty/01-config-map.yaml | yq read - 'data[users.json]'"
+        chdir: '../'
+      register: user_config
+      delegate_to: localhost
+      become: no
+
+    - name: provision users config
+      copy: 
+        content: "{{ user_config.stdout }}"
+        dest: /chaty/config/users.json
+
+    - name: provision relaunch script
+      template: 
+        src: ./relaunch.sh.j2
+        dest: /chaty/relaunch.sh
+        mode: '777'
+      
+    - name: writing cron config
+      copy:
+          content:  "{{ '* * * * * /chaty/relaunch.sh\n' }}"
+          dest: /chaty/relaunch.cron
+
+    - name: import cronjob
+      command: 'crontab /chaty/relaunch.cron'
+ 
+    - name: launch chaty
+      shell: '/chaty/relaunch.sh'
+
+   

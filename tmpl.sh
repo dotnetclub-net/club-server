@@ -31,8 +31,8 @@ tmpl() {
     echo "$CONTENT"
 }
 
-if [ -f ./values.sh ]; then
-    source ./values.sh
+if [ -f ../club-config/values.sh ]; then
+    source ../club-config/values.sh
 fi
 
 FILE=$1

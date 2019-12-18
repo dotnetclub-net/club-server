@@ -33,5 +33,7 @@ running=$(docker ps | grep $SERV_NAME)
   -v /chaty/config:/dotnet-chaty/config/ \
   $IMAGE_FULL_NAME
 
+#  todo: data dir?
+
   rm ./starting
  fi

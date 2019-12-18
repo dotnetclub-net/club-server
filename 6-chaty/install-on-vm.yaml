@@ -67,6 +67,6 @@
       command: 'crontab /chaty/relaunch.cron'
  
     - name: launch chaty
-      shell: '/chaty/relaunch.sh'
+      shell: 'docker rm -f chaty && /chaty/relaunch.sh'
 
    

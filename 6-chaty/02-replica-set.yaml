@@ -20,7 +20,7 @@ spec:
             name: chaty-config
       containers:
         - name: clubchaty
-          image: jijiechen/dotnetclub-chaty:201906121756
+          image: dockerhub.azk8s.cn/jijiechen/dotnetclub-chaty:201912180955
           ports:
             - name: http
               containerPort: 3000
